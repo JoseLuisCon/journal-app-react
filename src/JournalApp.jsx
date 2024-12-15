@@ -1,9 +1,9 @@
-import { AppRouter } from "./router/AppRouter";
+import { Outlet } from "react-router";
 
 export const JournalApp = () => {
   return (
     <>
-      <AppRouter />
+      <Outlet />
     </>
   );
 };

@@ -1,14 +1,31 @@
-import { Route, Routes } from "react-router";
-import { AuthRouter } from "../Auth/routes/AuthRoutes";
-import { JournalRoutes } from "../journal/routes/JournalRoutes";
+import { createBrowserRouter } from "react-router";
+import { LoginPage, RegisterPage } from "../Auth/pages";
+import { JournalPage } from "../journal/pages/JournalPage";
 
-export const AppRouter = () => {
-  return (
-    <Routes>
-      {/* Login y Registro */}
-      <Route path="/auth/*" element={<AuthRouter />} />
-      {/* JournalApp */}
-      <Route path="/*" element={<JournalRoutes />} />
-    </Routes>
-  );
-};
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: JournalPage,
+  },
+  {
+    path: "auth",
+    children: [
+      {
+        path: "",
+        Component: LoginPage,
+      },
+      {
+        path: "login",
+        Component: LoginPage,
+      },
+      {
+        path: "register",
+        Component: RegisterPage,
+      },
+      {
+        path: "*",
+        Component: LoginPage,
+      },
+    ],
+  },
+]);
